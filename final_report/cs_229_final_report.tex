@@ -190,7 +190,7 @@ The optimized designs achieve crosstalk ratios below 0.005\%---effectively perfe
 
 \subsection{ES+NN: Mode Collapse Analysis}
 
-The neural network sacrifices 180$^\circ$ performance entirely ($P_{180}=5.5$) to maximize 0$^\circ$ and 90$^\circ$---a ``mode collapse'' enabled by the sum-of-rewards objective. This reveals geometric structure: 0$^\circ$ and 90$^\circ$ receivers are both accessible from the source-facing side of the array, while 180$^\circ$ requires routing power to the opposite side. The network learns that forward angles share compatible design features, while backward steering requires incompatible structure.
+The neural network sacrifices 180$^\circ$ performance entirely ($P_{180}=5.5$) to maximize 0$^\circ$ and 90$^\circ$---a ``mode collapse'' enabled by the sum-of-rewards objective (Figure~\ref{fig:nn_collapse}, Appendix). This reveals geometric structure: 0$^\circ$ and 90$^\circ$ receivers are both accessible from the source-facing side of the array, while 180$^\circ$ requires routing power to the opposite side. The network learns that forward angles share compatible design features, while backward steering requires incompatible structure.
 
 \section{Discussion and Conclusion}
 
