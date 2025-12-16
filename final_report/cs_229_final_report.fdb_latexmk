@@ -1,6 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1765846833.43285 "/Users/sze/project-lorentz/cs229-beam-steering/final_report/cs_229_final_report.tex" "cs_229_final_report.pdf" "cs_229_final_report" 1765846833.98856 0
-  "/Users/sze/project-lorentz/cs229-beam-steering/final_report/cs_229_final_report.tex" 1765846832.50002 20668 2917a32d3d814c6ffb5cd5ed00751186 ""
+["pdflatex"] 1765846989.42377 "/Users/sze/project-lorentz/cs229-beam-steering/final_report/cs_229_final_report.tex" "cs_229_final_report.pdf" "cs_229_final_report" 1765846990.03021 0
+  "/Users/sze/project-lorentz/cs229-beam-steering/final_report/cs_229_final_report.tex" 1765846989.17393 20681 d7ddebd406cd2b5016fdc11ea9219619 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2024/texmf-dist/fonts/tfm/jknappen/ec/tcrm1095.tfm" 1136768653 1536 02c06700a42be0f5a28664c7273f82e7 ""
@@ -133,9 +133,9 @@
   "/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1730958706.43016 5467645 128b85b7cde5f5edc5cb7f1dd7ff8736 ""
   "/usr/local/texlive/2024/texmf-var/web2c/pdftex/pdflatex.fmt" 1730958678 8221420 689744c84e4d64f8590285094a042b65 ""
   "/usr/local/texlive/2024/texmf.cnf" 1710266656 577 e590dabc9e28c5b61546e15f63eebcdf ""
-  "cs_229_final_report.aux" 1765846833.92809 7549 ab39037a091e974d1d552c1d28adacce "pdflatex"
-  "cs_229_final_report.out" 1765846833.92869 1961 474b48973c39bf7b30a07cd8bdbdbe80 "pdflatex"
-  "cs_229_final_report.tex" 1765846832.50002 20668 2917a32d3d814c6ffb5cd5ed00751186 ""
+  "cs_229_final_report.aux" 1765846989.95817 7549 ab39037a091e974d1d552c1d28adacce "pdflatex"
+  "cs_229_final_report.out" 1765846989.95888 1961 474b48973c39bf7b30a07cd8bdbdbe80 "pdflatex"
+  "cs_229_final_report.tex" 1765846989.17393 20681 d7ddebd406cd2b5016fdc11ea9219619 ""
   "figures/domain_schematic.pdf" 1765845422.42247 27756 6f4b5b0b6cca39d00ed12eafa8e02970 ""
   "figures/field_patterns.pdf" 1765845422.98214 139636 a64adabd31b8e45452931e4bf12f7bfb ""
   "figures/training_curves.pdf" 1765845422.54549 16165 e3f1e3b0cc74177237c7415fd0975cd0 ""
