@@ -1,0 +1,189 @@
+\documentclass[10pt, custom, landscape]{tikzposter}
+\geometry{paperwidth=80in, paperheight=50in}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+
+% Stanford colors
+\definecolor{StanfordRed}{RGB}{140, 21, 21}
+
+% Color theme
+\definecolorpalette{StanfordPalette}{
+    \definecolor{colorOne}{RGB}{140, 21, 21}
+    \definecolor{colorTwo}{RGB}{140, 21, 21}
+    \definecolor{colorThree}{RGB}{255, 255, 255}
+}
+
+\usetheme{Default}
+\usecolorstyle[colorPalette=StanfordPalette]{Britain}
+
+% Block style
+\defineblockstyle{StanfordBlock}{
+    titlewidthscale=1, bodywidthscale=1, titleleft,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=0, linewidth=2pt,
+    titleinnersep=6mm, bodyinnersep=8mm
+}{
+    \draw[color=StanfordRed, fill=white, line width=\blocklinewidth]
+        (blockbody.south west) rectangle (blockbody.north east);
+    \ifBlockHasTitle
+        \draw[color=StanfordRed, fill=StanfordRed, line width=\blocklinewidth]
+            (blocktitle.south west) rectangle (blocktitle.north east);
+    \fi
+}
+\useblockstyle{StanfordBlock}
+
+\colorlet{blocktitlebgcolor}{StanfordRed}
+\colorlet{blocktitlefgcolor}{white}
+
+% Title
+\makeatletter
+\settitle{
+    \centering
+    \vbox{
+        \centering
+        \color{StanfordRed}
+        {\bfseries \huge Beam Steering in Plasma Photonic Crystals via Evolution Strategies \par}
+        \vspace*{0.3em}
+        {\large Selin Ertan --- Stanford University --- CS229 Fall 2025}
+    }
+}
+\makeatother
+
+\title{}
+\author{}
+\institute{}
+
+\begin{document}
+
+\maketitle
+
+\begin{columns}
+\column{0.33}
+
+\block{Problem \& Physical System}{
+    \textbf{Goal:} Steer EM beam to target angles using tunable plasma rods.
+    
+    \vspace{0.3em}
+    \centering
+    \includegraphics[width=0.6\linewidth]{figures/domain_schematic.pdf}
+    
+    \raggedright
+    \vspace{0.3em}
+    \textbf{Plasma rods:} $\varepsilon(\rho) = 1 - (\rho \omega_p^{\max}/\omega)^2$
+    
+    \textbf{Design:} 64 parameters $\boldsymbol{\rho} \in [0,1]^{64}$
+    
+    \textbf{Simulation:} FDFD, $400\times400$ grid, 6 GHz
+}
+
+\block{Methods}{
+    \textbf{ES-Single:} One design per angle $\theta^*$
+    \begin{equation*}
+        R = P_{\theta^*} - 0.5 \sum_{\theta \neq \theta^*} P_\theta
+    \end{equation*}
+    
+    \textbf{ES-Multi:} One design for all angles
+    \begin{equation*}
+        R = \sum_\theta P_\theta - 0.5 \cdot \text{Var}(P_\theta)
+    \end{equation*}
+    
+    \textbf{ES+NN:} Neural network $f_\phi: [\sin\theta, \cos\theta] \mapsto \boldsymbol{\rho}_{8\times8}$
+    \begin{equation*}
+        R = \sum_{\theta \in \Theta} \left[ P_\theta - 0.5 \sum_{\theta' \neq \theta} P_{\theta'} \right]
+    \end{equation*}
+}
+
+\block{ES Algorithm}{
+    1. Sample $N=100$ perturbations $\boldsymbol{\epsilon}_i \sim \mathcal{N}(0, I)$
+    
+    2. Evaluate $R_i = R(\boldsymbol{\theta} + \sigma \boldsymbol{\epsilon}_i)$
+    
+    3. Gradient: $\hat{\mathbf{g}} = \frac{1}{N\sigma} \sum w_i \boldsymbol{\epsilon}_i$
+    
+    4. Update with Adam ($\eta=0.02$, $\sigma_0=0.3$)
+}
+
+\block{ES+NN Algorithm}{
+    1. Sample perturbations $\boldsymbol{\epsilon}_i$ for NN weights $\phi$
+    
+    2. For each $\theta \in \{0^\circ, 90^\circ, 180^\circ\}$:
+    
+    \quad Generate design $\boldsymbol{\rho} = f_{\phi + \sigma\boldsymbol{\epsilon}_i}(\theta)$
+    
+    \quad Simulate and compute $P_\theta$
+    
+    3. Compute total reward $R_i$ across all angles
+    
+    4. Update NN weights (20,928 params) with Adam
+}
+
+\column{0.42}
+
+\block{Results: ES-Single}{
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/field_patterns.pdf}
+    
+    \vspace{0.3em}
+    \textbf{Key Result:} $<$0.005\% crosstalk --- near-perfect steering without gradients
+}
+
+\block{Results: ES+NN Mode Collapse}{
+    \centering
+    \includegraphics[width=0.95\linewidth]{figures/nn_mode_collapse.pdf}
+    
+    \vspace{0.3em}
+    $P_0 = 9.8\times10^5$, \quad $P_{90} = 4.7\times10^5$, \quad $P_{180} = 5.5$ (collapsed!)
+}
+
+\column{0.25}
+
+\block{Conclusions}{
+    \textbf{ES-Single Results:}
+    
+    \quad $0^\circ$: $P = 1.453\times10^6$, crosstalk 0.003\%
+    
+    \quad $90^\circ$: $P = 1.452\times10^6$, crosstalk 0.005\%
+    
+    \quad $180^\circ$: $P = 1.448\times10^6$, crosstalk 0.003\%
+    
+    \vspace{0.3em}
+    $\bullet$ \textbf{ES-Multi} confirms no universal design exists
+    
+    \vspace{0.3em}
+    $\bullet$ \textbf{ES+NN} mode collapse reveals $0^\circ/90^\circ$ compatible, $180^\circ$ incompatible
+    
+    \vspace{0.3em}
+    $\bullet$ Gradient-free approach is \textbf{viable} for inverse EM design
+}
+
+\block{Future Work}{
+    $\bullet$ Continuous angle interpolation with NN
+    
+    $\bullet$ Multi-frequency optimization
+    
+    $\bullet$ Hardware validation of designs
+    
+    $\bullet$ Alternative NN architectures (CNN, attention)
+}
+
+\block{References}{
+    \small
+    [1] Rodriguez et al., Phys. Rev. Applied, 2021
+    
+    [2] Salimans et al., arXiv, 2017
+    
+    [3] Hughes et al., ACS Photonics, 2019
+    
+    \vspace{0.5em}
+    \normalsize
+    \textbf{Code:} github.com/szertan/cs229-beam-steering
+}
+
+\end{columns}
+
+\end{document}

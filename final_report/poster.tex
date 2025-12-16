@@ -1,0 +1,166 @@
+\documentclass[20pt, custom, landscape]{tikzposter}
+\geometry{paperwidth=72in, paperheight=36in}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{url}
+
+% Stanford colors
+\definecolor{StanfordRed}{RGB}{140, 21, 21}
+\definecolor{StanfordWhite}{RGB}{255, 255, 255}
+
+% Color theme - Stanford red headers with white text
+\definecolorpalette{StanfordPalette}{
+    \definecolor{colorOne}{RGB}{140, 21, 21}
+    \definecolor{colorTwo}{RGB}{140, 21, 21}
+    \definecolor{colorThree}{RGB}{255, 255, 255}
+}
+
+\usetheme{Default}
+\usecolorstyle[colorPalette=StanfordPalette]{Britain}
+
+% Block style - red header bar with white text
+\defineblockstyle{StanfordBlock}{
+    titlewidthscale=1, bodywidthscale=1, titleleft,
+    titleoffsetx=0pt, titleoffsety=0pt, bodyoffsetx=0pt, bodyoffsety=0pt,
+    bodyverticalshift=0pt, roundedcorners=0, linewidth=2pt,
+    titleinnersep=8mm, bodyinnersep=10mm
+}{
+    \draw[color=StanfordRed, fill=StanfordWhite, line width=\blocklinewidth]
+        (blockbody.south west) rectangle (blockbody.north east);
+    \ifBlockHasTitle
+        \draw[color=StanfordRed, fill=StanfordRed, line width=\blocklinewidth]
+            (blocktitle.south west) rectangle (blocktitle.north east);
+    \fi
+}
+\useblockstyle{StanfordBlock}
+
+% White text on red title bars
+\colorlet{blocktitlebgcolor}{StanfordRed}
+\colorlet{blocktitlefgcolor}{white}
+
+% Title formatting
+\makeatletter
+\settitle{
+    \centering
+    \vbox{
+        \centering
+        \color{StanfordRed}
+        {\bfseries \Huge \@title \par}
+        \vspace*{0.5em}
+        {\Large \@author \par}
+        \vspace*{0.3em}
+        {\large \@institute}
+    }
+}
+\makeatother
+
+% Metadata
+\title{Conditional Beam Steering in Plasma Photonic Crystals via Evolution Strategies}
+\author{Selin Ertan, Computer Science}
+\institute{Stanford University}
+
+\begin{document}
+
+\maketitle
+
+\begin{columns}
+\column{0.6}
+
+% Header I - Introduction (compact)
+\block{Introduction \& Physical System}{
+    \textbf{Research Question:} Can gradient-free optimization match gradient-based methods for inverse EM design?
+    
+    \vspace{0.3em}
+    \begin{minipage}{0.35\linewidth}
+        \centering
+        \includegraphics[width=0.9\linewidth]{figures/domain_schematic.pdf}
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.6\linewidth}
+        \textbf{Plasma rods:} $\varepsilon(\rho) = 1 - (\rho \cdot \omega_p^{\max}/\omega)^2$, \ $\varepsilon \in [-5.25, 1]$
+        
+        \textbf{Design space:} $\boldsymbol{\rho} \in [0,1]^{64}$ (64 rod densities)
+        
+        \textbf{Simulation:} FDFD solver, $400\times400$ grid, 6 GHz
+    \end{minipage}
+}
+
+\column{0.4}
+
+% Header II - Methods
+\block{Methods}{
+    \textbf{ES-Single:} Separate designs for each $\theta^* \in \{0^\circ, 90^\circ, 180^\circ\}$
+    \vspace{-0.3em}
+    \begin{equation*}
+        R = P_{\theta^*} - 0.5 \sum_{\theta \neq \theta^*} P_\theta
+    \end{equation*}
+    
+    \textbf{ES-Multi:} One design for all angles
+    \vspace{-0.3em}
+    \begin{equation*}
+        R = \sum_\theta P_\theta - 0.5 \cdot \text{Var}(P_\theta)
+    \end{equation*}
+    
+    \textbf{ES+NN:} Neural network $f_\phi: [\sin\theta, \cos\theta] \mapsto \boldsymbol{\rho}_{8\times8}$
+}
+
+% Header III - Algorithms
+\block{ES Algorithm}{
+    \textbf{1.} Sample $N=100$ perturbations $\boldsymbol{\epsilon}_i \sim \mathcal{N}(0,I)$
+    
+    \textbf{2.} Evaluate $R_i = R(\boldsymbol{\theta} + \sigma \boldsymbol{\epsilon}_i)$ in parallel
+    
+    \textbf{3.} Estimate gradient: $\hat{\mathbf{g}} = \frac{1}{N\sigma} \sum w_i \boldsymbol{\epsilon}_i$
+    
+    \textbf{4.} Update with Adam ($\eta=0.02$, $\sigma_0=0.3$)
+    
+    \vspace{0.5em}
+    \textbf{ES+NN:} Same procedure, but $\boldsymbol{\theta}$ are NN weights (20,928 params). Network: 4-layer MLP, input $[\sin\theta, \cos\theta]$, output $\boldsymbol{\rho}_{8\times8}$
+}
+
+\end{columns}
+
+\begin{columns}
+\column{0.75}
+
+% Header IV - Results
+\block{Results}{
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{figures/field_patterns.pdf}
+        
+        \small ES-Single: $<$0.005\% crosstalk
+    \end{minipage}
+    \hfill
+    \begin{minipage}{0.48\linewidth}
+        \centering
+        \includegraphics[width=0.85\linewidth]{figures/nn_mode_collapse.pdf}
+        
+        \small ES+NN: $P_0 = 9.8\times10^5$, $P_{90} = 4.7\times10^5$, $P_{180} = 5.5$
+    \end{minipage}
+}
+
+\column{0.25}
+
+% Header V - Conclusions
+\block{Conclusions}{
+    $\bullet$ \textbf{ES-Single} achieves $<$0.005\% crosstalk
+    
+    $\bullet$ \textbf{ES-Multi} confirms no universal design exists
+    
+    $\bullet$ \textbf{ES+NN} reveals: $0^\circ/90^\circ$ compatible, $180^\circ$ incompatible
+    
+    $\bullet$ Gradient-free approach is \textbf{viable}
+    
+    \vspace{0.5em}
+    \small
+    \textbf{Code:} \url{github.com/szertan/cs229-beam-steering}
+}
+
+\end{columns}
+
+\end{document}
