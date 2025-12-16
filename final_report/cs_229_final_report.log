@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  15 DEC 2025 19:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.11.6)  15 DEC 2025 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -556,20 +556,20 @@ File: figures/training_curves.pdf Graphic file (type pdf)
 <use figures/training_curves.pdf>
 Package pdftex.def Info: figures/training_curves.pdf  used on input line 254.
 (pdftex.def)             Requested size: 234.8775pt x 154.86772pt.
-<figures/field_patterns.pdf, id=132, 701.55338pt x 440.37636pt>
+<figures/field_patterns.pdf, id=132, 698.89635pt x 652.72263pt>
 File: figures/field_patterns.pdf Graphic file (type pdf)
 <use figures/field_patterns.pdf>
 Package pdftex.def Info: figures/field_patterns.pdf  used on input line 261.
-(pdftex.def)             Requested size: 375.80544pt x 235.90475pt.
+(pdftex.def)             Requested size: 399.29463pt x 372.92226pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/nn_mode_collapse.pdf, id=133, 677.92107pt x 435.26105pt>
+<figures/nn_mode_collapse.pdf, id=133, 683.14151pt x 645.50296pt>
 File: figures/nn_mode_collapse.pdf Graphic file (type pdf)
 <use figures/nn_mode_collapse.pdf>
 Package pdftex.def Info: figures/nn_mode_collapse.pdf  used on input line 268.
-(pdftex.def)             Requested size: 375.80544pt x 241.28716pt.
+(pdftex.def)             Requested size: 399.29463pt x 377.29759pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -585,12 +585,12 @@ Package rerunfilecheck Info: File `cs_229_final_report.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  14939 strings out of 474116
- 236331 string characters out of 5743682
+ 236329 string characters out of 5743682
  1940187 words of memory out of 5000000
  36888 multiletter control sequences out of 15000+600000
  578059 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,79p,1056b,615s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,1034b,615s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 ></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><
@@ -612,10 +612,10 @@ e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/
 /texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2024/t
 exmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
-Output written on cs_229_final_report.pdf (9 pages, 579719 bytes).
+Output written on cs_229_final_report.pdf (9 pages, 630856 bytes).
 PDF statistics:
- 514 PDF objects out of 1000 (max. 8388607)
- 235 compressed objects within 3 object streams
+ 541 PDF objects out of 1000 (max. 8388607)
+ 243 compressed objects within 3 object streams
  40 named destinations out of 1000 (max. 500000)
  44149 words of extra memory for PDF output out of 51595 (max. 10000000)
 

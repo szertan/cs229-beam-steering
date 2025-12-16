@@ -164,18 +164,25 @@ def create_training_curves():
 # FIGURE 3: Optimized Designs and Field Patterns
 # =============================================================================
 def create_field_patterns():
-    """Show optimized rod patterns and resulting field distributions."""
+    """Show optimized rod patterns, permittivity, and field distributions."""
     print("\nCreating Figure 3: Field Patterns...")
     
-    fig, axes = plt.subplots(2, 3, figsize=(10, 6))
+    from matplotlib.colors import LinearSegmentedColormap
+    
+    # Permittivity colormap (same as visualization.py)
+    COLORS_EPS = ['red', 'orangered', 'orange', 'gold', 'black']
+    EPS_CMAP = LinearSegmentedColormap.from_list('plasma_eps', COLORS_EPS)
+    
+    fig, axes = plt.subplots(3, 3, figsize=(10, 9))
     
     for idx, angle in enumerate(ANGLES):
         # Load data
         rho = np.load(os.path.join(DATA_DIR, f'{angle}deg', 'best_rho.npy'))
+        eps_r = np.load(os.path.join(DATA_DIR, f'{angle}deg', 'best_eps_r.npy'))
         Ez = np.load(os.path.join(DATA_DIR, f'{angle}deg', 'best_Ez.npy'))
-        print(f"  Loaded {angle}° data: rho={rho.shape}, Ez={Ez.shape}")
+        print(f"  Loaded {angle}° data: rho={rho.shape}, eps_r={eps_r.shape}, Ez={Ez.shape}")
         
-        # Top row: Rod patterns (ρ values)
+        # Row 1: Rod patterns (ρ values)
         ax_rho = axes[0, idx]
         im_rho = ax_rho.imshow(rho.T, origin='lower', cmap='viridis', vmin=0, vmax=1)
         ax_rho.set_title(f'{angle}° Design (ρ)')
@@ -189,8 +196,16 @@ def create_field_patterns():
         ax_rho.set_xticks(range(N_RODS))
         ax_rho.set_yticks(range(N_RODS))
         
-        # Bottom row: Field patterns (log scale)
-        ax_field = axes[1, idx]
+        # Row 2: Permittivity map (shows rods in domain)
+        ax_eps = axes[1, idx]
+        eps_display = np.clip(eps_r, -16, 1)
+        im_eps = ax_eps.imshow(eps_display.T, origin='lower', cmap=EPS_CMAP, vmin=-16, vmax=1)
+        ax_eps.set_title(f'{angle}° Permittivity εᵣ')
+        ax_eps.set_xlabel('x')
+        ax_eps.set_ylabel('y')
+        
+        # Row 3: Field patterns (log scale)
+        ax_field = axes[2, idx]
         field_intensity = np.abs(Ez.T)**2
         field_log = np.log10(field_intensity + 1e-10)
         vmax = np.percentile(field_log, 99)
@@ -202,7 +217,8 @@ def create_field_patterns():
     
     # Add colorbars
     fig.colorbar(im_rho, ax=axes[0, :], shrink=0.6, label='ρ (plasma density)', pad=0.02)
-    fig.colorbar(im_field, ax=axes[1, :], shrink=0.6, label='log₁₀|Ez|²', pad=0.02)
+    fig.colorbar(im_eps, ax=axes[1, :], shrink=0.6, label='εᵣ (permittivity)', pad=0.02)
+    fig.colorbar(im_field, ax=axes[2, :], shrink=0.6, label='log₁₀|Ez|²', pad=0.02)
     
     plt.tight_layout()
     save_path = os.path.join(FIG_DIR, 'field_patterns.pdf')

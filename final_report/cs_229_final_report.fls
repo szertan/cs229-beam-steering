@@ -241,6 +241,11 @@ INPUT ./figures/field_patterns.pdf
 INPUT ./figures/field_patterns.pdf
 INPUT ./figures/field_patterns.pdf
 INPUT ./figures/field_patterns.pdf
+INPUT ./figures/nn_mode_collapse.pdf
+INPUT ./figures/nn_mode_collapse.pdf
+INPUT ./figures/nn_mode_collapse.pdf
+INPUT ./figures/nn_mode_collapse.pdf
+INPUT ./figures/nn_mode_collapse.pdf
 INPUT cs_229_final_report.aux
 INPUT ./cs_229_final_report.out
 INPUT ./cs_229_final_report.out
