@@ -2,8 +2,6 @@
 
 High-speed Evolution Strategy training pipeline for optimizing plasma rod configurations to steer electromagnetic waves.
 
-**Status**: ✅ Ready for AWS Batch deployment (Phase 4: Push Docker to ECR)
-
 ## Project Structure
 
 ```
