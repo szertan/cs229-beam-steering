@@ -1,0 +1,52 @@
+# Git
+.git
+.gitignore
+.gitattributes
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv
+venv/
+env/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Training outputs and temporary files
+es_outputs/
+test_*
+outputs/
+*.log
+.ipynb_checkpoints/
+
+# Documentation
+*.md
+img/
+slides/
+notes/
+
+# Jupyter
+*.ipynb
+
+# AWS/Docker specific
+.docker/
+aws-setup-scripts/

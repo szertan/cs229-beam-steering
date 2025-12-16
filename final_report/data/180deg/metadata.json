@@ -1,0 +1,27 @@
+{
+  "iteration": 999,
+  "target_angle": 180,
+  "timestamp": "2025-12-15T23:06:59.104338",
+  "frequency_hz": 6000000000.0,
+  "hyperparameters": {
+    "N": 100,
+    "sigma_0": 0.3,
+    "sigma_decay": 0.999,
+    "eta": 0.02,
+    "beta_1": 0.9,
+    "beta_2": 0.999,
+    "adam_eps": 1e-08,
+    "clip_norm": null,
+    "lambda_crosstalk": 0.5,
+    "n_iterations": 1000,
+    "log_every": 10,
+    "frequency_hz": 6000000000.0,
+    "n_jobs": 16
+  },
+  "reward_best": 1443091.9705944138,
+  "history_latest": {
+    "reward_mean": 1391228.2343681382,
+    "power_target": 1447743.9810973713,
+    "crosstalk_ratio": 2.5763358793111514e-05
+  }
+}

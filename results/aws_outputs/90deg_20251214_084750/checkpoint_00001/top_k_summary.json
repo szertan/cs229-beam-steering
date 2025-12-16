@@ -1,0 +1,18 @@
+[
+  {
+    "rank": 1,
+    "reward": -297.6043102724057,
+    "iteration": 1,
+    "rho_min": 0.0,
+    "rho_max": 1.0,
+    "rho_mean": 0.5719588989722688
+  },
+  {
+    "rank": 2,
+    "reward": -524.0085566947,
+    "iteration": 0,
+    "rho_min": 0.0,
+    "rho_max": 1.0,
+    "rho_mean": 0.5705687602008032
+  }
+]

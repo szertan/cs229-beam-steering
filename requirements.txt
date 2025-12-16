@@ -1,0 +1,22 @@
+# =============================================================================
+# Python Requirements for CS229 Beam Steering ES Training
+# =============================================================================
+# Core dependencies
+numpy==2.0.2
+scipy==1.13.1
+matplotlib==3.9.4
+
+# Ceviche FDFD simulator
+ceviche==0.1.3
+autograd==1.8.0
+
+# Parallelization
+joblib==1.5.2
+
+# AWS support (for S3 uploads in future phases)
+boto3>=1.26.0
+
+# Utilities
+python-dateutil==2.9.0.post0
+pillow==11.3.0
+psutil>=5.9.0
