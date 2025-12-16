@@ -1,0 +1,38 @@
+{
+  "iteration": 200,
+  "timestamp": "2025-12-15T20:28:15.641877",
+  "best_reward": 1441270.9300710151,
+  "best_powers": {
+    "0": 984548.4982069281,
+    "90": 468512.2564928284,
+    "180": 5.483688080736203
+  },
+  "training_angles": [
+    0,
+    90,
+    180
+  ],
+  "sigma": 0.2455946488435909,
+  "config": {
+    "N": 100,
+    "sigma_0": 0.3,
+    "sigma_decay": 0.999,
+    "eta": 0.02,
+    "beta_1": 0.9,
+    "beta_2": 0.999,
+    "adam_eps": 1e-08,
+    "n_iterations": 1000,
+    "log_every": 10,
+    "checkpoint_every": 100,
+    "lambda_crosstalk": 0.5,
+    "training_angles": [
+      0,
+      90,
+      180
+    ],
+    "frequency_hz": 6000000000.0,
+    "n_jobs": -1
+  },
+  "nn_num_params": 20928,
+  "seed": 42
+}

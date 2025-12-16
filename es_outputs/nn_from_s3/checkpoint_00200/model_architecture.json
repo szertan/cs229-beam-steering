@@ -1,0 +1,48 @@
+{
+  "layer_sizes": [
+    2,
+    64,
+    128,
+    64,
+    64
+  ],
+  "num_params": 20928,
+  "layer_shapes": [
+    {
+      "weights": [
+        2,
+        64
+      ],
+      "biases": [
+        64
+      ]
+    },
+    {
+      "weights": [
+        64,
+        128
+      ],
+      "biases": [
+        128
+      ]
+    },
+    {
+      "weights": [
+        128,
+        64
+      ],
+      "biases": [
+        64
+      ]
+    },
+    {
+      "weights": [
+        64,
+        64
+      ],
+      "biases": [
+        64
+      ]
+    }
+  ]
+}
